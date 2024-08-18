@@ -1,0 +1,346 @@
+
+#box {
+    display: none; /* Hide initially */
+    width: 320px; /* Width of the Tic-Tac-Toe box */
+    position: relative; /* Position relative to the main container */
+    margin-left: 20px; /* Space between the container and game box */
+    flex-shrink: 0; /* Prevent shrinking */
+}
+
+
+/* Wheelbox containing the circles */
+.wheelbox {
+    width: 320px; 
+    height: 320px; 
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.inner-circle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(0deg);
+    transform-origin: center;
+    border-radius: 50%;
+    
+}
+
+.inner-circle.small {
+    background: conic-gradient(
+        red 0% 8.33%, 
+        orange 8.33% 16.66%, 
+        yellow 16.66% 25%, 
+        green 25% 33.33%, 
+        blue 33.33% 41.66%, 
+        indigo 41.66% 50%, 
+        violet 50% 58.33%, 
+        pink 58.33% 66.66%, 
+        cyan 66.66% 75%, 
+        lime 75% 83.33%, 
+        magenta 83.33% 91.66%, 
+        gold 91.66% 100%
+    );
+    width: 305px; 
+    height: 305px;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1; /* Ensure it is layered below the other circles */
+}
+
+
+
+.inner-circle.smallest {
+    background: conic-gradient(
+        turquoise 0% 12.5%, 
+        lavender 12.5% 25%, 
+        peachpuff 25% 37.5%, 
+        hotpink 37.5% 50%, 
+        chartreuse 50% 62.5%, 
+        sienna 62.5% 75%, 
+        slateblue 75% 87.5%, 
+        tomato 87.5% 100%
+    );
+    width: 175px; 
+    height: 175px;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2; /* Ensure it is layered above the other circles */
+}
+
+
+.inner-circle.smaller {
+    background-color: rgba(0, 0, 0, 0.2);
+    width: 85%;
+    height: 85%;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 3; /* Ensure it is layered between the other circles */
+    overflow: hidden; /* Ensure segments stay within this circle */
+}
+
+
+.segment {
+    position: absolute;
+    width: 50%; /* Half the width of the inner circle */
+    height: 50%; /* Half the height of the inner circle */
+    top: 50%;
+    left: 50%;
+    background-color: transparent; /* Default transparent, customize as needed */
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); /* Full segment shape */
+    transform-origin: 0% 0%; /* Rotation around the top-left corner */
+    z-index: 90;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .segment-text {
+    font-size: 2em; /* Adjust font size */
+    color: black; /* Customize text color */
+    text-align: center;
+    font-weight: bold;
+    z-index: 91;
+  }
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Base style for the indicator */
+.indicator {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 2px;
+    height: 60%;
+    transform: translate(-50%, -50%) rotate(0deg);
+    transform-origin: center;
+    z-index: 4;
+}
+
+/* Large hand style */
+.large-hand {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 4px; /* Make it wider for visibility */
+    height: 60%;
+    background: var(--clr);
+    transform: translateX(-50%);
+    transform-origin: bottom;
+    z-index: 5;
+}
+
+.wheel-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: black;
+}
+
+.wheel {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border-color: black;
+    overflow: hidden;
+}
+
+.division-line {
+    position: absolute;
+    top: 12%;
+    left: 50%;
+    width: 2px; /* Thickness of the line */
+    height: 120px; /* Length of the line, adjust this to match the size of your small circle */
+    background-color: blue; /* Line color */
+    transform-origin: 50% 100%; /* Rotate around the center */
+    z-index: 6; /* Ensure it's above other elements */
+}
+
+.pin {
+    position: absolute;
+    width: 20%; /* Half the width of the inner circle */
+    height: 20%; /* Half the height of the inner circle */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 1em;
+    height: 1em;
+    background: rgb(38, 0, 255);
+    border: 5px solid #ffffff;
+    border-radius: 20em;
+    margin: auto;
+    z-index: 7;
+}
+  
+button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+}
+
+
+
+
+
+
+
+
+
+
+
+/* Common styles for all lights */
+.light {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    display: none; /* Hidden by default */
+    z-index: 60;
+}
+
+.light::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;  /* Make the glow relative to the parent */
+    height: 100%;
+    border-radius: 50%;
+    background: var(--clr);
+    box-shadow: 0 0 10px var(--clr), 0 0 40px var(--clr);
+    z-index: 70; /* Positioned behind the light itself */
+}
+
+/* Positioning each light manually */
+.green-light {
+    --clr: #04fc43;
+    top: 50%; /* Positioned at the center */
+    left: 50%;
+    animation: rotateGreenLight 60s infinite linear;
+    z-index: 80;
+}
+
+.red-light {
+    --clr: #fc3e04;
+    top: 30%; /* Example position */
+    left: 70%;
+    animation: rotateRedLight 3600s infinite linear;
+    z-index: 50;
+}
+
+.yellow-light {
+    --clr: #f8fc04;
+    top: 70%; /* Example position */
+    left: 30%;
+    animation: rotateYellowLight 43200s infinite linear;
+    z-index: 51;
+}
+
+/* Rotation animations */
+@keyframes rotateGreenLight {
+    100% {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+@keyframes rotateRedLight {
+    100% {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+@keyframes rotateYellowLight {
+    100% {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+/* Show lights when the spin wheel popup is displayed */
+#spinWheelPopup.active .green-light,
+#spinWheelPopup.active .red-light,
+#spinWheelPopup.active .yellow-light {
+    display: block;
+}
+
+/* Spinning animation for the wheel */
+#wheel.spinning {
+    transition: transform 4s ease-out;
+}
+
+/* Animation for the indicator */
+@keyframes rotateClockwise {
+    from {
+        transform: translate(-50%, -100%) rotate(0deg);
+    }
+    to {
+        transform: translate(-50%, -100%) rotate(360deg);
+    }
+}
+
+/* Apply the animation */
+#indicator {
+    transition: transform 4s ease-out;
+}
+
+
+
+#playAgainBtn {
+    display: none; /* Initially hidden */
+    background-color: #4CAF50; /* Green background */
+    border: none; /* Remove default border */
+    color: white; /* White text */
+    padding: 15px 32px; /* Add some padding */
+    text-align: center; /* Center text */
+    text-decoration: none; /* Remove underline */
+    display: inline-block; /* Make the button inline */
+    font-size: 16px; /* Set font size */
+    margin: 4px 2px; /* Add some margin */
+    cursor: pointer; /* Change cursor to pointer */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+    transition: background-color 0.3s, transform 0.2s; /* Smooth transitions */
+}
+
+#playAgainBtn:hover {
+    background-color: #45a049; /* Darker green on hover */
+    transform: scale(1.05); /* Slightly enlarge button on hover */
+}
+
+#playAgainBtn:active {
+    background-color: #388e3c; /* Even darker green on click */
+}
+
